@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Secret Santa</string>
+    <string name="name_editText">Entrez joueurs nom</string>
+    <string name="phone_radioButton">SMS</string>
+    <string name="email_radioButton">Email</string>
+    <string name="email_editText">example@email.com</string>
+    <string name="addPlayer_button">Ajouter joueur</string>
+    <string name="phone_editText">(555) 123-4567</string>
+    <string name="contact_textView">Sélectionnez la méthode pour contacter le joueur</string>
+    <string name="showPlayers_button">Spectacle joueur</string>
+    <string name="updatePlayer_button">Lecteur de mise à jour</string>
+    <string name="secretSanta_button">Calculer Santa Secrète</string>
+    <string name="delete_button">Supprimer tous</string>
+    <string name="database_add_success">Joueur inséré avec succès</string>
+    <string name="database_add_failure">Joueur sans succès inséré</string>
+    <string name="database_update_success">Joueur mis à jour avec succès</string>
+    <string name="database_update_failure">Joueur sans succès mis à jour</string>
+    <string name="database_delete">Tous les joueurs supprimés</string>
+</resources>

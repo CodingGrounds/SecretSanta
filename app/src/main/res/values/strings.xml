@@ -11,4 +11,9 @@
     <string name="updatePlayer_button">Update player</string>
     <string name="secretSanta_button">Calculate Secret Santa</string>
     <string name="delete_button">Delete all</string>
+    <string name="database_add_success">Player successfully inserted</string>
+    <string name="database_add_failure">Player unsuccessfully inserted</string>
+    <string name="database_update_success">Player successfully updated</string>
+    <string name="database_update_failure">Player unsuccessfully updated</string>
+    <string name="database_delete">All players successfully deleted</string>
 </resources>

@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
                     boolean isInserted = myDatabase.insertRecord(new Person(name, method, contactInformation));
 
                     if(isInserted)
-                        Toast.makeText(MainActivity.this, "Player successfully created", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, R.string.database_add_success, Toast.LENGTH_LONG).show();
                     else
-                        Toast.makeText(MainActivity.this, "Player unsuccessfully created", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, R.string.database_add_failure, Toast.LENGTH_LONG).show();
 
                     editName.getText().clear();
                     editPhone.getText().clear();
@@ -142,9 +142,9 @@ public class MainActivity extends AppCompatActivity {
                     boolean isInserted = myDatabase.updateRecord(new Person(name, method, contactInformation));
 
                     if(isInserted)
-                        Toast.makeText(MainActivity.this, "Player successfully updated", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, R.string.database_update_success, Toast.LENGTH_LONG).show();
                     else
-                        Toast.makeText(MainActivity.this, "Player unsuccessfully updated", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, R.string.database_update_failure, Toast.LENGTH_LONG).show();
                 }
             }
         );
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view){
                     myDatabase.deleteAll();
-                    Toast.makeText(MainActivity.this, "All entries deleted", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, R.string.database_delete, Toast.LENGTH_LONG).show();
                 }
             }
         );
