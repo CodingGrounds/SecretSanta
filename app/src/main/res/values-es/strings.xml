@@ -16,4 +16,5 @@
     <string name="database_update_success">Jugador actualizado correctamente</string>
     <string name="database_update_failure">Jugador actualiza sin éxito</string>
     <string name="database_delete">Todos los jugadores han eliminado correctamente</string>
+    <string name="sms_permission">" L'autorisation d'envoyer des messages SMS est nécessaire pour que cette fonction fonctionne"</string>
 </resources>
