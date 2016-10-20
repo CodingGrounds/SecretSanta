@@ -6,11 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.Serializable;
+
 /**
  * Created by Jason on 2016-09-19.
  */
 
-public class DatabaseHelper extends SQLiteOpenHelper{
+@SuppressWarnings("serial") //hide compiler warnings
+public class DatabaseHelper extends SQLiteOpenHelper implements Serializable{
 
 	/* Database version */
 	private static final int DATABASE_VERSION = 1;

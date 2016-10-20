@@ -4,11 +4,15 @@
     <string name="phone_radioButton">SMS</string>
     <string name="email_radioButton">Email</string>
     <string name="email_editText">example@email.com</string>
+    <string name="editPlayers_button">Edit Players</string>
+    <string name="addPlayers_button">Add Players</string>
     <string name="addPlayer_button">Add player</string>
     <string name="phone_editText">(555) 123-4567</string>
     <string name="contact_textView">Select the method to contact the player</string>
+    <string name="selectPlayer_textView">Select a player to modify</string>
     <string name="showPlayers_button">Show players</string>
     <string name="updatePlayer_button">Update player</string>
+    <string name="deletePlayer_button">Delete player</string>
     <string name="secretSanta_button">Calculate Secret Santa</string>
     <string name="delete_button">Delete all</string>
     <string name="database_add_success">Player successfully inserted</string>
