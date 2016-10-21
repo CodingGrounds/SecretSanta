@@ -25,7 +25,7 @@ public class AddPlayer extends AppCompatActivity {
     /* Database accessor */
     private DatabaseHelper myDatabase;
     /* Intent from main activity containing the database helper */
-    private Intent main, home;
+    private Intent home;
     /* Contact information */
     private String contactInformation = "", method = "ERROR";
     /* Permissions object */
@@ -36,7 +36,6 @@ public class AddPlayer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_player);
 
-        main = getIntent();
         myDatabase = new DatabaseHelper(this);//(DatabaseHelper)main.getSerializableExtra(MainActivity.EXTRA_MESSAGE);
 
         //buttonHome = (ImageButton)findViewById(R.id.home_imageButton);
@@ -97,22 +96,32 @@ public class AddPlayer extends AppCompatActivity {
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
-                        if(method.equals("SMS"))
-                            contactInformation = editPhone.getText().toString();
-                        else if(method.equals("EMAIL"))
-                            contactInformation = editEmail.getText().toString();
+                        switch (method) {
+                            case "SMS":
+                                contactInformation = editPhone.getText().toString();
+                                break;
+                            case "EMAIL":
+                                contactInformation = editEmail.getText().toString();
+                                break;
+                            default:
+                                contactInformation = "ERROR";
+                                break;
+                        }
                         String name = editName.getText().toString();
 
-                        boolean isInserted = myDatabase.insertRecord(new Person(name, method, contactInformation));
-
-                        if(isInserted)
-                            Toast.makeText(AddPlayer.this, R.string.database_add_success, Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(AddPlayer.this, R.string.database_add_failure, Toast.LENGTH_LONG).show();
-
-                        editName.getText().clear();
-                        editPhone.getText().clear();
-                        editEmail.getText().clear();
+                        try{
+                            boolean success = myDatabase.insertRecord(new Person(name, method, contactInformation));
+                            Toast.makeText(AddPlayer.this, R.string.database_add_success, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddPlayer.this, String.valueOf(success), Toast.LENGTH_SHORT).show();
+                        }
+                        catch(Exception e){
+                            Toast.makeText(AddPlayer.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        finally{
+                            editName.getText().clear();
+                            editPhone.getText().clear();
+                            editEmail.getText().clear();
+                        }
                     }
                 }
         );

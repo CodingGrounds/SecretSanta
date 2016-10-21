@@ -1,24 +1,33 @@
 <resources>
     <string name="app_name">Secret Santa</string>
+
+    <string name="addPlayers_button">Add Players</string>
+    <string name="editPlayers_button">Edit Players</string>
+    <string name="showPlayers_button">View players</string>
+    <string name="secretSanta_button">Calculate Secret Santa</string>
+
+    <string name="home_imageButton">Return Home</string>
+
     <string name="name_editText">Enter players name</string>
+    <string name="contact_textView">Select the method to contact the player</string>
+    <string name="phone_editText">(555) 123-4567</string>
+    <string name="email_editText">example@email.com</string>
     <string name="phone_radioButton">SMS</string>
     <string name="email_radioButton">Email</string>
-    <string name="email_editText">example@email.com</string>
-    <string name="editPlayers_button">Edit Players</string>
-    <string name="addPlayers_button">Add Players</string>
     <string name="addPlayer_button">Add player</string>
-    <string name="phone_editText">(555) 123-4567</string>
-    <string name="contact_textView">Select the method to contact the player</string>
-    <string name="selectPlayer_textView">Select a player to modify</string>
-    <string name="showPlayers_button">Show players</string>
+
+    <string name="selectPlayer_textView">Enter the players name to modify</string>
     <string name="updatePlayer_button">Update player</string>
     <string name="deletePlayer_button">Delete player</string>
-    <string name="secretSanta_button">Calculate Secret Santa</string>
-    <string name="delete_button">Delete all</string>
+
+    <string name="deleteAll_button">Delete all players</string>
+
     <string name="database_add_success">Player successfully inserted</string>
     <string name="database_add_failure">Player unsuccessfully inserted</string>
     <string name="database_update_success">Player successfully updated</string>
     <string name="database_update_failure">Player unsuccessfully updated</string>
     <string name="database_delete">All players successfully deleted</string>
+    <string name="database_deleteIndividual">Player successfully deleted</string>
+
     <string name="sms_permission">Permission to send SMS messages is required for this function to work</string>
 </resources>

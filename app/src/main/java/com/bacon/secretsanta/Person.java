@@ -6,6 +6,7 @@ package com.bacon.secretsanta;
 
 public class Person{
 
+    private String id;
     private String name;
     private String contactMethod;
     private String contactInformation;
@@ -27,6 +28,22 @@ public class Person{
         this.contactMethod = method;
         this.contactInformation = information;
         this.giftee = "not calculated";
+    }
+
+    /**
+     * Returns the persons ID
+     * @return The persons ID
+     */
+    public String getId(){
+        return id;
+    }
+
+    /**
+     * Sets or replaces the ID of the person
+     * @param id The new ID of the person
+     */
+    public void setId(String id){
+        this.id = id;
     }
 
     /**
@@ -98,6 +115,6 @@ public class Person{
      * @return The name, contact method, contact information, and giftee of the person
      */
     public String toString(){
-        return name + " has " + giftee + " as their giftee.";
+        return id + ": " + name + ":\t" + contactInformation;
     }
 }

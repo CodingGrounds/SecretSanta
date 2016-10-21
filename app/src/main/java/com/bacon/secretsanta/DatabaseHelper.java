@@ -29,10 +29,10 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable{
     private static final String KEY_INFORMATION = "ContactInformation";
 	private static final String KEY_GIFTEE = "Giftee";
 
-    /* Data types */
-    private static final String PRIMARY = " INTEGER PRIMARY KEY,";
-    private static final String TEXT_TYPE = " TEXT,";
-
+    /**
+     * Instantiates a new database helper object
+     * @param context The activity accessing this database
+     */
     public DatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -76,11 +76,12 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable{
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         int count = cursor.getCount();
-		db.close();
+        db.close();
         Person[] personList = new Person[count];
-		if(cursor.moveToFirst()) {
+        if(cursor.moveToFirst()) {
             do {
                 Person person = new Person();
+                person.setId(cursor.getString(0));
                 person.setName(cursor.getString(1));
                 person.setContactMethod(cursor.getString(2));
                 person.setContactInformation(cursor.getString(3));
@@ -111,13 +112,16 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable{
 
     /**
      * Deletes the record of the specified person
-     * @param person The person object
+     * @param name The name of the person
      */
-	public void deleteRecord(Person person){
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_NAME, KEY_NAME + "= ?", new String[] {person.getName()});
-		db.close();
-	}
+    public boolean deleteRecord(String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereClause = KEY_NAME + "= ?";
+        String[] whereArgs = {name};
+        long result = db.delete(TABLE_NAME, whereClause, whereArgs);
+        db.close();
+        return result != -1;
+    }
 
     public void deleteAll(){
         SQLiteDatabase db = this.getWritableDatabase();

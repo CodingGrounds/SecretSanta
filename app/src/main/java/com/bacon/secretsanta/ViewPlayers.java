@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -11,28 +12,34 @@ public class ViewPlayers extends AppCompatActivity {
 
     /* Output text view */
     private TextView output;
+    /* Button in activity */
+    private Button buttonDeleteAll;
     /* Home button */
-    ImageButton buttonHome;
+    private ImageButton buttonHome;
     /* Database accessor */
     private DatabaseHelper myDatabase;
     /* Intent from main activity containing the database helper */
-    private Intent main, home;
+    private Intent home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_players);
 
-        main = getIntent();
-        myDatabase = new DatabaseHelper(this);//(DatabaseHelper)main.getSerializableExtra(MainActivity.EXTRA_MESSAGE);
+        myDatabase = new DatabaseHelper(this);
 
+        buttonDeleteAll = (Button)findViewById(R.id.deleteAll_button);
         buttonHome = (ImageButton)findViewById(R.id.home_imageButton);
         output = (TextView) findViewById(R.id.output_textView);
 
         showPlayers();
+        deleteAll();
         home();
     }
 
+    /**
+     * Returns to the main activity
+     */
     private void home(){
         buttonHome.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -43,15 +50,30 @@ public class ViewPlayers extends AppCompatActivity {
         });
     }
 
+    private void deleteAll(){
+        buttonDeleteAll.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                myDatabase.deleteAll();
+                showPlayers();
+            }
+        });
+    }
+
     /**
      * Shows all players in the text view
      */
     private void showPlayers(){
-        Person[] persons = myDatabase.getAllRecords();
-        String result = "";
-        for (Person person : persons) {
-            result += person + "\n";
+        try{
+            Person[] persons = myDatabase.getAllRecords();
+            String result = "";
+            for (Person person : persons) {
+                result += person + "\n";
+            }
+            output.setText(result);
         }
-        output.setText(result);
+        catch(Exception e) {
+            output.setText(e.getMessage());
+        }
     }
 }

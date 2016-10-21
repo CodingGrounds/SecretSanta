@@ -12,17 +12,6 @@
     tools:context="com.bacon.secretsanta.EditPlayer">
 
     <TextView
-        android:text="@string/selectPlayer_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/selectPlayer_textView"
-        android:layout_alignParentEnd="true"
-        android:textAlignment="center"
-        android:textSize="18sp" />
-
-    <TextView
         android:id="@+id/contact_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -120,6 +109,17 @@
         android:layout_alignParentStart="true"
         android:id="@+id/imageButton"
         android:background="@android:color/background_light"
-        android:tint="@android:color/holo_red_dark" />
+        android:tint="@android:color/holo_red_dark"
+        android:contentDescription="@string/home_imageButton" />
+
+    <TextView
+        android:text="@string/selectPlayer_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectPlayer_textView"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

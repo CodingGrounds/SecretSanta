@@ -21,19 +21,27 @@ public class EditPlayer extends AppCompatActivity {
     /* Radio buttons in the User Interface */
     private RadioButton radioPhone, radioEmail;
     /* Intent from main activity containing the database helper */
-    private Intent main, home;
+    private Intent home;
     /* Database accessor */
     private DatabaseHelper myDatabase;
     /* Contact information */
-    private String contactInformation = "", method = "ERROR";
+    private String contactInformation, method = "ERROR";
+    /* Permissions object */
+    private Permissions permissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_player);
 
-        main = getIntent();
-        myDatabase = new DatabaseHelper(this);//(DatabaseHelper)main.getSerializableExtra(MainActivity.EXTRA_MESSAGE);
+        myDatabase = new DatabaseHelper(this);
+
+        editName = (EditText)findViewById(R.id.name_editText);
+        editPhone = (EditText)findViewById(R.id.phone_editText);
+        editEmail = (EditText)findViewById(R.id.email_editText);
+
+        radioPhone = (RadioButton)findViewById(R.id.phone_radioButton);
+        radioEmail = (RadioButton)findViewById(R.id.email_radioButton);
 
         //buttonHome = (ImageButton)findViewById(R.id.home_imageButton);
         buttonUpdatePlayer = (Button)findViewById(R.id.updatePlayer_button);
@@ -59,39 +67,54 @@ public class EditPlayer extends AppCompatActivity {
      */
     private void updatePlayer(){
         buttonUpdatePlayer.setOnClickListener(
-            new View.OnClickListener(){
-                @Override
-                public void onClick(View view){
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
 
-                    if(method.equals("SMS"))
-                        contactInformation = editPhone.getText().toString();
-                    else if(method.equals("EMAIL"))
-                        contactInformation = editEmail.getText().toString();
-                    String name = editName.getText().toString();
+                        switch (method) {
+                            case "SMS":
+                                contactInformation = editPhone.getText().toString();
+                                break;
+                            case "EMAIL":
+                                contactInformation = editEmail.getText().toString();
+                                break;
+                            default:
+                                contactInformation = "ERROR";
+                                break;
+                        }
+                        String name = editName.getText().toString();
 
-                    boolean isInserted = myDatabase.updateRecord(new Person(name, method, contactInformation));
-
-                    if(isInserted)
-                        Toast.makeText(EditPlayer.this, R.string.database_update_success, Toast.LENGTH_LONG).show();
-                    else
-                        Toast.makeText(EditPlayer.this, R.string.database_update_failure, Toast.LENGTH_LONG).show();
+                        try{
+                            boolean success = myDatabase.updateRecord(new Person(name, method, contactInformation));
+                            Toast.makeText(EditPlayer.this, R.string.database_update_success, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditPlayer.this, String.valueOf(success), Toast.LENGTH_SHORT).show();
+                        }
+                        catch(Exception e){
+                            Toast.makeText(EditPlayer.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
                 }
-            }
         );
     }
 
     /**
-     * Deletes all entries in the database
+     * Deletes selected record
      */
     private void clearEntries(){
         buttonDeleteAll.setOnClickListener(
-            new View.OnClickListener(){
-                @Override
-                public void onClick(View view){
-                    myDatabase.deleteAll();
-                    Toast.makeText(EditPlayer.this, R.string.database_delete, Toast.LENGTH_LONG).show();
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        try{
+                            boolean success = myDatabase.deleteRecord(editName.getText().toString());
+                            Toast.makeText(EditPlayer.this, R.string.database_deleteIndividual, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditPlayer.this, String.valueOf(success), Toast.LENGTH_SHORT).show();
+                        }
+                        catch(Exception e){
+                            Toast.makeText(EditPlayer.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
                 }
-            }
         );
     }
 }

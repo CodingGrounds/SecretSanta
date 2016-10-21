@@ -17,8 +17,8 @@
         android:layout_below="@+id/home_imageButton"
         android:layout_alignParentStart="true"
         android:id="@+id/output_textView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/deleteAll_button" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -28,5 +28,15 @@
         android:tint="@android:color/holo_red_dark"
         android:background="@android:color/background_light"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:contentDescription="@string/home_imageButton" />
+
+    <Button
+        android:text="@string/deleteAll_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/deleteAll_button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
