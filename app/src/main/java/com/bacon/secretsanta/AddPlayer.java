@@ -50,6 +50,7 @@ public class AddPlayer extends AppCompatActivity {
 
         addPlayer();
         getRadioSelection();
+        emptyTextChecker();
         //home();
     }
 
@@ -89,7 +90,37 @@ public class AddPlayer extends AppCompatActivity {
     }
 
     /**
-     * Turns the user specified information into a person object to insert into the database
+     * Checks if the email and phone fields are filled if their respective radio buttons are selected.
+     */
+    private void emptyTextChecker(){
+        editName.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View view, boolean bool){
+                editName.setError(null);
+                if(editName.getText().toString().trim().equalsIgnoreCase(""))
+                    editName.setError("Name field cannot be empty");
+            }
+        });
+        editPhone.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View view, boolean bool){
+                editPhone.setError(null);
+                if(editPhone.getText().toString().equals("") && method.equals("SMS"))
+                    editPhone.setError("SMS selected without phone number");
+            }
+        });
+        editEmail.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View view, boolean bool){
+                editEmail.setError(null);
+                if(editEmail.getText().toString().equals("") && method.equals("EMAIL"))
+                    editEmail.setError("Email selected without valid address");
+            }
+        });
+    }
+
+    /**
+     * Turns the user specified information into a person object to insert into the database.
      */
     private void addPlayer(){
         buttonAddPlayer.setOnClickListener(

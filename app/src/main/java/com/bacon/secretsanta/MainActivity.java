@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonAddPlayers, buttonEditPlayers, buttonShowPlayers, buttonSecretSanta;
     /* Intent to start utility activities */
     private Intent intentAddPlayers, intentEditPlayers, intentShowPlayers;
-    /* Extra message */
-    //protected static final String EXTRA_MESSAGE = "Database helper";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 intentAddPlayers = new Intent(MainActivity.this, AddPlayer.class);
-                //intentAddPlayers.putExtra(EXTRA_MESSAGE, myDatabase);
                 startActivity(intentAddPlayers);
             }
         });
@@ -59,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 intentEditPlayers = new Intent(MainActivity.this, EditPlayer.class);
-                //intentEditPlayers.putExtra(EXTRA_MESSAGE, myDatabase);
                 startActivity(intentEditPlayers);
             }
         });
@@ -73,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 intentShowPlayers = new Intent(MainActivity.this, ViewPlayers.class);
-                //intentShowPlayers.putExtra(EXTRA_MESSAGE, myDatabase);
                 startActivity(intentShowPlayers);
             }
         });

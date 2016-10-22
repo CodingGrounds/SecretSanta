@@ -1,6 +1,8 @@
 package com.bacon.secretsanta;
 
+import android.Manifest;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -49,6 +51,8 @@ public class EditPlayer extends AppCompatActivity {
 
         updatePlayer();
         clearEntries();
+        getRadioSelection();
+        emptyTextChecker();
         //home();
     }
 
@@ -58,6 +62,61 @@ public class EditPlayer extends AppCompatActivity {
             public void onClick(View view){
                 home = new Intent(EditPlayer.this, MainActivity.class);
                 startActivity(home);
+            }
+        });
+    }
+
+    /**
+     * Records the state of the radio buttons. If the button is selected its value is true.
+     */
+    private void getRadioSelection(){
+        radioPhone.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        permissions = new Permissions(EditPlayer.this);
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                            permissions.checkPermission(Manifest.permission.SEND_SMS, "This app needs permission to send sms messages");
+                        method = "SMS";
+                    }
+                }
+        );
+        radioEmail.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view){
+                        method = "EMAIL";
+                    }
+                }
+        );
+    }
+
+    /**
+     * Checks if the email and phone fields are filled if their respective radio buttons are selected.
+     */
+    private void emptyTextChecker(){
+        editName.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View view, boolean bool){
+                editName.setError(null);
+                if(editName.getText().toString().trim().equalsIgnoreCase(""))
+                    editName.setError("Name field cannot be empty");
+            }
+        });
+        editPhone.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View view, boolean bool){
+                editPhone.setError(null);
+                if(editPhone.getText().toString().equals("") && method.equals("SMS"))
+                    editPhone.setError("SMS selected without phone number");
+            }
+        });
+        editEmail.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View view, boolean bool){
+                editEmail.setError(null);
+                if(editEmail.getText().toString().equals("") && method.equals("EMAIL"))
+                    editEmail.setError("Email selected without valid address");
             }
         });
     }

@@ -81,7 +81,6 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Serializable{
         if(cursor.moveToFirst()) {
             do {
                 Person person = new Person();
-                person.setId(cursor.getString(0));
                 person.setName(cursor.getString(1));
                 person.setContactMethod(cursor.getString(2));
                 person.setContactInformation(cursor.getString(3));
