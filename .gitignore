@@ -6,6 +6,7 @@
 *.dex
 
 # Java class files
+SensitiveInformation.java
 *.class
 
 # Generated files

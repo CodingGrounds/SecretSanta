@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-//
 public class MainActivity extends AppCompatActivity {
 
     /* Database helper used to access data */
-    private DatabaseHelper myDatabase;
+    protected static DatabaseHelper myDatabase;
     /* Button in the User Interface */
     private Button buttonAddPlayers, buttonEditPlayers, buttonShowPlayers, buttonSecretSanta;
     /* Intent to start utility activities */
@@ -41,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private void addPlayers(){
         buttonAddPlayers.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
+            public void onClick(View view){
                 intentAddPlayers = new Intent(MainActivity.this, AddPlayer.class);
                 startActivity(intentAddPlayers);
             }
@@ -54,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private void editPlayers(){
         buttonEditPlayers.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
+            public void onClick(View view){
                 intentEditPlayers = new Intent(MainActivity.this, EditPlayer.class);
                 startActivity(intentEditPlayers);
             }
@@ -67,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private void showPlayers(){
         buttonShowPlayers.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
+            public void onClick(View view){
                 intentShowPlayers = new Intent(MainActivity.this, ViewPlayers.class);
                 startActivity(intentShowPlayers);
             }
@@ -82,14 +80,8 @@ public class MainActivity extends AppCompatActivity {
             new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
-                    Person[] persons = SecretSanta.assignPlayers(myDatabase.getAllRecords());
-                    for (Person person : persons) {
-                        myDatabase.updateRecord(person);
-                        if(person.getContactMethod().equals("SMS"))
-                            Permissions.sendSms(person.getContactInformation(), "Your secret santa giftee is " + person.getGiftee(), MainActivity.this);
-                        Toast.makeText(MainActivity.this, "" + person, Toast.LENGTH_LONG).show();
-                    }
-
+                    ExternalContact async = new ExternalContact(MainActivity.this);
+                    async.execute(SecretSanta.assignPlayers(myDatabase.getAllRecords()));
                 }
             }
         );

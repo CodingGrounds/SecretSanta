@@ -37,6 +37,7 @@ public class AddPlayer extends AppCompatActivity {
         setContentView(R.layout.activity_add_player);
 
         myDatabase = new DatabaseHelper(this);//(DatabaseHelper)main.getSerializableExtra(MainActivity.EXTRA_MESSAGE);
+        permissions = new Permissions(AddPlayer.this);
 
         //buttonHome = (ImageButton)findViewById(R.id.home_imageButton);
         buttonAddPlayer = (Button)findViewById(R.id.addPlayer_button);
@@ -72,7 +73,6 @@ public class AddPlayer extends AppCompatActivity {
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
-                        permissions = new Permissions(AddPlayer.this);
                         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                             permissions.checkPermission(Manifest.permission.SEND_SMS, "This app needs permission to send sms messages");
                         method = "SMS";
@@ -83,6 +83,8 @@ public class AddPlayer extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view){
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                            permissions.checkPermission(Manifest.permission.INTERNET, "This app needs permission to access the internet to send the notification email");
                         method = "EMAIL";
                     }
                 }
@@ -97,7 +99,7 @@ public class AddPlayer extends AppCompatActivity {
             @Override
             public void onFocusChange(View view, boolean bool){
                 editName.setError(null);
-                if(editName.getText().toString().trim().equalsIgnoreCase(""))
+                if(editName.getText().toString().equals(""))
                     editName.setError("Name field cannot be empty");
             }
         });
@@ -143,7 +145,6 @@ public class AddPlayer extends AppCompatActivity {
                         try{
                             boolean success = myDatabase.insertRecord(new Person(name, method, contactInformation));
                             Toast.makeText(AddPlayer.this, R.string.database_add_success, Toast.LENGTH_SHORT).show();
-                            Toast.makeText(AddPlayer.this, String.valueOf(success), Toast.LENGTH_SHORT).show();
                         }
                         catch(Exception e){
                             Toast.makeText(AddPlayer.this, e.getMessage(), Toast.LENGTH_LONG).show();

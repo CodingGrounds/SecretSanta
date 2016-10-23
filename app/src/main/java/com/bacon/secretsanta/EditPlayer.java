@@ -146,7 +146,6 @@ public class EditPlayer extends AppCompatActivity {
                         try{
                             boolean success = myDatabase.updateRecord(new Person(name, method, contactInformation));
                             Toast.makeText(EditPlayer.this, R.string.database_update_success, Toast.LENGTH_SHORT).show();
-                            Toast.makeText(EditPlayer.this, String.valueOf(success), Toast.LENGTH_SHORT).show();
                         }
                         catch(Exception e){
                             Toast.makeText(EditPlayer.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -167,7 +166,6 @@ public class EditPlayer extends AppCompatActivity {
                         try{
                             boolean success = myDatabase.deleteRecord(editName.getText().toString());
                             Toast.makeText(EditPlayer.this, R.string.database_deleteIndividual, Toast.LENGTH_SHORT).show();
-                            Toast.makeText(EditPlayer.this, String.valueOf(success), Toast.LENGTH_SHORT).show();
                         }
                         catch(Exception e){
                             Toast.makeText(EditPlayer.this, e.getMessage(), Toast.LENGTH_LONG).show();
