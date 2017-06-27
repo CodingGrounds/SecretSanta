@@ -16,14 +16,10 @@ public class EditPlayer extends AppCompatActivity {
 
     /* Button in the User Interface */
     private Button buttonUpdatePlayer, buttonDeleteAll;
-    /* Home button */
-    ImageButton buttonHome;
     /* Text fields in the User Interface */
     private EditText editName, editPhone, editEmail;
     /* Radio buttons in the User Interface */
     private RadioButton radioPhone, radioEmail;
-    /* Intent from main activity containing the database helper */
-    private Intent home;
     /* Database accessor */
     private DatabaseHelper myDatabase;
     /* Contact information */
@@ -53,17 +49,6 @@ public class EditPlayer extends AppCompatActivity {
         clearEntries();
         getRadioSelection();
         emptyTextChecker();
-        //home();
-    }
-
-    private void home(){
-        buttonHome.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                home = new Intent(EditPlayer.this, MainActivity.class);
-                startActivity(home);
-            }
-        });
     }
 
     /**

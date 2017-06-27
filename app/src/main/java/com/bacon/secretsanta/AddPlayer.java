@@ -18,14 +18,10 @@ public class AddPlayer extends AppCompatActivity {
     private EditText editName, editPhone, editEmail;
     /* Button in the User Interface */
     private Button buttonAddPlayer;
-    /* Home button */
-    ImageButton buttonHome;
     /* Radio buttons in the User Interface */
     private RadioButton radioPhone, radioEmail;
     /* Database accessor */
     private DatabaseHelper myDatabase;
-    /* Intent from main activity containing the database helper */
-    private Intent home;
     /* Contact information */
     private String contactInformation = "", method = "ERROR";
     /* Permissions object */
@@ -39,7 +35,6 @@ public class AddPlayer extends AppCompatActivity {
         myDatabase = new DatabaseHelper(this);//(DatabaseHelper)main.getSerializableExtra(MainActivity.EXTRA_MESSAGE);
         permissions = new Permissions(AddPlayer.this);
 
-        //buttonHome = (ImageButton)findViewById(R.id.home_imageButton);
         buttonAddPlayer = (Button)findViewById(R.id.addPlayer_button);
 
         editName = (EditText)findViewById(R.id.name_editText);
@@ -52,17 +47,6 @@ public class AddPlayer extends AppCompatActivity {
         addPlayer();
         getRadioSelection();
         emptyTextChecker();
-        //home();
-    }
-
-    private void home(){
-        buttonHome.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                home = new Intent(AddPlayer.this, MainActivity.class);
-                startActivity(home);
-            }
-        });
     }
 
     /**

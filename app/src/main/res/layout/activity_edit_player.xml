@@ -30,14 +30,15 @@
         android:id="@+id/phone_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/contact_textView"
         android:ems="10"
         android:hint="@string/phone_editText"
         android:inputType="phone"
         android:textAlignment="textStart"
         android:textAllCaps="false"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_below="@+id/contact_textView"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/radioGroup2" />
 
     <EditText
         android:id="@+id/email_editText"
@@ -48,14 +49,16 @@
         android:ems="10"
         android:hint="@string/email_editText"
         android:inputType="textEmailAddress"
-        android:textAlignment="textStart" />
+        android:textAlignment="textStart"
+        android:layout_toStartOf="@+id/radioGroup2" />
 
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/email_editText"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/phone_editText">
+        android:layout_alignTop="@+id/phone_editText"
+        android:id="@+id/radioGroup2">
 
         <RadioButton
             android:id="@+id/phone_radioButton"
@@ -100,17 +103,6 @@
         android:layout_above="@+id/deletePlayer_button"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="?attr/homeAsUpIndicator"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/imageButton"
-        android:background="@android:color/background_light"
-        android:tint="@android:color/holo_red_dark"
-        android:contentDescription="@string/home_imageButton" />
 
     <TextView
         android:text="@string/selectPlayer_textView"

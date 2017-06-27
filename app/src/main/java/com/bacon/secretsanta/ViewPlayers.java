@@ -14,12 +14,8 @@ public class ViewPlayers extends AppCompatActivity {
     private TextView output;
     /* Button in activity */
     private Button buttonDeleteAll;
-    /* Home button */
-    private ImageButton buttonHome;
     /* Database accessor */
     private DatabaseHelper myDatabase;
-    /* Intent from main activity containing the database helper */
-    private Intent home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,25 +25,10 @@ public class ViewPlayers extends AppCompatActivity {
         myDatabase = new DatabaseHelper(this);
 
         buttonDeleteAll = (Button)findViewById(R.id.deleteAll_button);
-        buttonHome = (ImageButton)findViewById(R.id.home_imageButton);
         output = (TextView) findViewById(R.id.output_textView);
 
         showPlayers();
         deleteAll();
-        home();
-    }
-
-    /**
-     * Returns to the main activity
-     */
-    private void home(){
-        buttonHome.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                home = new Intent(ViewPlayers.this, MainActivity.class);
-                startActivity(home);
-            }
-        });
     }
 
     private void deleteAll(){

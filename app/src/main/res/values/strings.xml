@@ -10,8 +10,8 @@
 
     <string name="name_editText">Enter players name</string>
     <string name="contact_textView">Select the method to contact the player</string>
-    <string name="phone_editText">(555) 123-4567</string>
-    <string name="email_editText">example@email.com</string>
+    <string name="phone_editText">SMS: (555) 123&#8211;4567</string>
+    <string name="email_editText">Email: example@email.com</string>
     <string name="phone_radioButton">SMS</string>
     <string name="email_radioButton">Email</string>
     <string name="addPlayer_button">Add player</string>
